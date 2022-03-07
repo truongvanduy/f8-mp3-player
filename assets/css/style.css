@@ -52,6 +52,7 @@ html {
   padding: 16px 16px 14px;
   background-color: #fff;
   position: fixed;
+  z-index: 2;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -61,6 +62,16 @@ html {
   border-radius: 8px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
   margin-top: var(--screen-padding);
+}
+.dashboard::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  background-color: #f5f5f5;
+  top: calc(-1 * var(--screen-padding));
+  left: 0;
+  width: 100%;
+  height: var(--screen-padding);
 }
 @media screen and (max-width: 492px) {
   .dashboard {

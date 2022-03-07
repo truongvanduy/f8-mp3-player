@@ -76,20 +76,6 @@ const app = {
       image:
         "./assets/img/the-nights.png"
       },
-    {
-      name: "Firestone",
-      singer: "Kygo ft. Conrad Sewell",
-      path: "./assets/music/Kygo - Firestone ft. Conrad Sewell (Official Video).mp3",
-      image:
-        "./assets/img/firestone.png"
-      },
-    {
-      name: "Firestone",
-      singer: "Kygo ft. Conrad Sewell",
-      path: "./assets/music/Kygo - Firestone ft. Conrad Sewell (Official Video).mp3",
-      image:
-        "./assets/img/firestone.png"
-      },
       ],
       render: function () {
         const htmls = this.songs.map((song,index) => {
