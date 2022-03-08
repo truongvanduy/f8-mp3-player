@@ -20,6 +20,7 @@ const app = {
   isPlaying: false,
   isRandom: false,
   isRepeat: false,
+  playedSongs: [],
   songs: [
     {
       name: "Ngày Khác Lạ",
@@ -118,15 +119,17 @@ const app = {
       else
         _this.nextSong();
       _this.scrollToActiveSong();
+      audio.play();
     }
     const handlePreviousSong = function () {
       if (_this.isRepeat)
-        _this.repeatSong();
+      _this.repeatSong();
       else if (_this.isRandom)
-        _this.randomSong();
+      _this.randomSong();
       else
-        _this.previousSong();
+      _this.previousSong();
       _this.scrollToActiveSong();
+      audio.play();
     }
     // On scroll events
     document.onscroll = function () {
@@ -214,6 +217,7 @@ const app = {
         _this.changeSongStatus(_this.currentIndex, newIndex);
         _this.currentIndex = newIndex;
         _this.loadCurrentSong();
+        audio.play();
       }
     }
   },
@@ -221,13 +225,13 @@ const app = {
     heading.textContent = this.currentSong.name;
     cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
     audio.src = this.currentSong.path; 
-    audio.play();
   },
   nextSong: function () {
     let nextIndex = (this.currentIndex + 1) % this.songListLength; 
     this.changeSongStatus(this.currentIndex, nextIndex);
     this.currentIndex = nextIndex;
     this.loadCurrentSong();
+    let anotherIndex = 1;
   },
   previousSong: function () {
     let previousIndex = (this.currentIndex + this.songListLength - 1) % this.songListLength;
@@ -237,9 +241,10 @@ const app = {
   },
   randomSong: function () {
     let randomIndex;
+    this.updatePlayedSongs();
     do {
       randomIndex = Math.floor(Math.random() * this.songListLength);
-    } while (randomIndex === this.currentIndex)
+    } while (this.playedSongs.includes(randomIndex));
     this.changeSongStatus(this.currentIndex, randomIndex);
     this.currentIndex = randomIndex;
     this.loadCurrentSong();
@@ -257,6 +262,12 @@ const app = {
       behavior: 'smooth',
       block: 'center',
     })
+  },
+  updatePlayedSongs: function () {
+    let n = this.playedSongs.unshift(this.currentIndex);
+    if (n > this.songListLength / 2)
+      this.playedSongs.pop();
+    console.log(this.playedSongs);
   },
   start: function () {
     this.defineProperties();
