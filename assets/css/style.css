@@ -166,7 +166,7 @@ header h2 {
   background-color: var(--primary-color);
   cursor: pointer;
   position: relative;
-  bottom: 12px;
+  bottom: 12.1px;
   border-radius: 100rem;
   pointer-events: none;
 }
