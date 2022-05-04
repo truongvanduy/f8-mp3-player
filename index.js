@@ -1,6 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+
 const cd = $('.cd');
 const heading = $('header h2');
 const cdThumb = $('.cd-thumb');
@@ -33,13 +34,13 @@ const app = {
       singer: "Kygo ft. Sandro Cavazza",
       path: "./assets/music/Kygo - Happy Now ft. Sandro Cavazza (Official Video).mp3",
       image:
-      "./assets/img/happy-now.png"
+        "./assets/img/happy-now.png"
     },
     {
       name: "In Your Eyes",
       singer: "Robin Schulz feat. Alida",
       path:
-      "assets/music/Robin Schulz feat. Alida – In Your Eyes (Official Music Video).mp3",
+        "assets/music/Robin Schulz feat. Alida – In Your Eyes (Official Music Video).mp3",
       image: "./assets/img/in-your-eyes.png"
     },
     {
@@ -47,7 +48,7 @@ const app = {
       singer: "Đen ft. Lynk Lee",
       path: "./assets/music/Đen - Cô Gái Bàn Bên ft. Lynk Lee (w-lyrics).mp3",
       image:
-      "assets/img/co-gai-ban-ben.png"
+        "assets/img/co-gai-ban-ben.png"
     },
     {
       name: "Firestone",
@@ -55,33 +56,33 @@ const app = {
       path: "./assets/music/Kygo - Firestone ft. Conrad Sewell (Official Video).mp3",
       image:
         "./assets/img/firestone.png"
-      },
+    },
     {
       name: "Papercut",
       singer: "Zedd ft. Troye Sivan",
       path: "./assets/music/Zedd - Papercut ft. Troye Sivan (Official Audio).mp3",
       image:
         "./assets/img/paper-cut.png"
-      },
+    },
     {
       name: "Forever",
       singer: "Martin Garrix, Matisse & Sadko",
       path: "./assets/music/Martin Garrix, Matisse & Sadko - Forever (Official Music Video).mp3",
       image:
         "./assets/img/forever.png"
-      },
+    },
     {
       name: "The Nights",
       singer: "Avicii",
       path: "./assets/music/Avicii - The Nights.mp3",
       image:
         "./assets/img/the-nights.png"
-      },
-      ],
-      render: function () {
-        const htmls = this.songs.map((song,index) => {
-          return `
-          <div class="song${index === this.currentIndex ? ' active': ''}" data-index=${index}> 
+    },
+  ],
+  render: function () {
+    const htmls = this.songs.map((song, index) => {
+      return `
+          <div class="song${index === this.currentIndex ? ' active' : ''}" data-index=${index}> 
           <div class="thumb" style="background-image: url(${song.image})">
           </div>
           <div class="body">
@@ -123,11 +124,11 @@ const app = {
     }
     const handlePreviousSong = function () {
       if (_this.isRepeat)
-      _this.repeatSong();
+        _this.repeatSong();
       else if (_this.isRandom)
-      _this.randomSong();
+        _this.randomSong();
       else
-      _this.previousSong();
+        _this.previousSong();
       _this.scrollToActiveSong();
       audio.play();
     }
@@ -147,7 +148,7 @@ const app = {
       else
         audio.play();
     }
-    
+
     // When the song is played
     audio.onplay = function () {
       _this.isPlaying = true;
@@ -175,7 +176,7 @@ const app = {
 
     // Rotate the cd thumb
     let cdAnimation = cdThumb.animate([
-      { transform: 'rotate(360deg)'}
+      { transform: 'rotate(360deg)' }
     ],
       {
         duration: 15000,
@@ -196,13 +197,13 @@ const app = {
       _this.isRandom = !_this.isRandom;
       this.classList.toggle('active', _this.isRandom);
     }
-    
+
     // Repeat button on/off
     repeatBtn.onclick = function () {
       _this.isRepeat = !_this.isRepeat;
       this.classList.toggle('active', _this.isRepeat);
     }
-    
+
     // Auto next song when the song ends
     audio.onended = function () {
       handleNextSong();
@@ -224,10 +225,10 @@ const app = {
   loadCurrentSong: function () {
     heading.textContent = this.currentSong.name;
     cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
-    audio.src = this.currentSong.path; 
+    audio.src = this.currentSong.path;
   },
   nextSong: function () {
-    let nextIndex = (this.currentIndex + 1) % this.songListLength; 
+    let nextIndex = (this.currentIndex + 1) % this.songListLength;
     this.changeSongStatus(this.currentIndex, nextIndex);
     this.currentIndex = nextIndex;
     this.loadCurrentSong();
